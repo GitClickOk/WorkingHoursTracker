@@ -1,0 +1,27 @@
+﻿@page
+@model StatusPageModel
+@{
+    ViewData["Title"] = "Status";
+
+    var actionStyle = Model.WorkingStatus == Models.WorkingStatus.Working ? "bg-danger" : "bg-success"; 
+    var actionText = Model.WorkingStatus == Models.WorkingStatus.Working ? "End" : "Start"; 
+}
+<form method="post" class="text-center">
+    <input type="hidden" value="@Model.AppUserId" name="AppUserId"/>
+    <div class="mb-3">
+        <span id="spanClock">00:00:00 AM</span>      
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary btn-lg @(actionStyle)">@actionText</button>
+    </div>
+    <div class="mb-3">
+        <a asp-page="./History" asp-route-id="@Model.AppUserId"><small>History</small></a>
+    </div>
+</form>
+<script>
+    var spanClock = document.getElementById("spanClock");
+    setInterval(() => {
+        var display = new Date().toLocaleTimeString();
+        spanClock.innerHTML = display;       
+    }, 1000);    
+</script>

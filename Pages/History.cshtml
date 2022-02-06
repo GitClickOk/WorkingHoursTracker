@@ -1,0 +1,27 @@
+﻿@page
+@model HistoryPageModel
+@{
+    ViewData["Title"] = "History";
+}
+<h5>@Model.FirstName @Model.LastName Hours</h5>
+<table class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <td>Start</td>
+            <td>End</td>
+            <td>Total Hours</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var history in Model.History)
+        {
+            var end = history.End ?? DateTime.Now;
+            var totalHours = (end - history.Start).ToString(@"hh\:mm\:ss");
+            <tr>
+                <td>@history.Start</td>
+                <td>@history.End</td>
+                <td>@totalHours</td>
+            </tr>
+        }
+    <tbody>
+</table>

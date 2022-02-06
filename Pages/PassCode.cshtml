@@ -1,0 +1,15 @@
+﻿@page
+@model PassCodePageModel
+@{
+    ViewData["Title"] = "PassCode";
+}
+<form method="post">
+    <input type="hidden" value="@Model.AppUserId" name="AppUserId"/>
+    <div class="mb-3">
+        <label class="form-label" for="PassCode">PassCode</label>
+        <input class="form-control" type="text" value="@Model.PassCode" name="PassCode" autofocus="autofocus" >
+    </div>
+    <div class="mb-3">
+        <button  type="submit" class="btn btn-primary">Enter</button>
+    </div>
+</form>
